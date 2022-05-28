@@ -23,9 +23,14 @@ class CardController(private val service: CardService) {
         return service.findByHolderId(holderId)
     }
 
+    @GetMapping("/{id}")
+    fun findByCardId(@PathVariable id: String): Card {
+        return service.findByCardId(id)
+    }
+
     @PostMapping
     fun add(@RequestBody cardRequest: CardRequestDTO): Card? {
-        return service.add(cardRequest.brand, cardRequest.personId)
+        return service.add(cardRequest.brand, cardRequest.nicknameCard, cardRequest.personId)
     }
 
 }

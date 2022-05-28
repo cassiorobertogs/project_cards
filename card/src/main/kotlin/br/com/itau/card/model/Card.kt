@@ -1,7 +1,6 @@
 package br.com.itau.card.model
 
 import org.springframework.data.annotation.Id
-import org.springframework.data.annotation.Reference
 import org.springframework.data.redis.core.RedisHash
 import java.time.LocalDate
 
@@ -13,7 +12,7 @@ class Card(
     val brand: Int,
     val validDate: LocalDate,
     val cvv: Int,
-    val nameCard: String,
+    val nicknameCard: String,
     val holder: Person?,
 ) {
 }

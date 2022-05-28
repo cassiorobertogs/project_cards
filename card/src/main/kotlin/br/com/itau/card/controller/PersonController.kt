@@ -1,5 +1,6 @@
 package br.com.itau.card.controller
 
+import br.com.itau.card.dto.PersonRequestDTO
 import br.com.itau.card.model.Person
 import br.com.itau.card.service.PersonService
 import org.springframework.web.bind.annotation.GetMapping
@@ -13,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController
 class PersonController(private val service: PersonService) {
 
     @PostMapping
-    fun add(@RequestBody person: Person): Person {
-        return service.add(person)
+    fun add(@RequestBody personRequest: PersonRequestDTO): Person? {
+        return service.add(personRequest.holderName, personRequest.document)
     }
 
     @GetMapping
-    fun list(): List<Person>{
+    fun list(): List<Person>? {
         return service.list()
     }
 }

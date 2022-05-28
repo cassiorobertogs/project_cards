@@ -1,13 +1,16 @@
 package br.com.itau.card.repository
 
 import br.com.itau.card.model.Card
+import org.springframework.data.annotation.Id
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
 interface CardRepository : CrudRepository<Card, String> {
-    fun findByBrand(brand: Int): List<Card>
 
     fun findByHolderId(id: String): List<Card>
+
+    fun findByCardId(id: String): Card
+
 }
-//find by sub propertis spring date
+//fun findByBrand(brand: Int): List<Card>

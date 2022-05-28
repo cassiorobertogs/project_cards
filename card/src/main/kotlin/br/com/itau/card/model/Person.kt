@@ -7,7 +7,7 @@ import org.springframework.data.redis.core.RedisHash
 class Person(
     @Id
     var id: String?,
-    val name: String,
-    val document: Long,
+    val holderName: String,
+    val document: String,
     ) {
 }
