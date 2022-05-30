@@ -30,7 +30,7 @@ class CardController(private val service: CardService) {
 
     @PostMapping
     fun add(@RequestBody cardRequest: CardRequestDTO): Card? {
-        return service.add(cardRequest.brand, cardRequest.nicknameCard, cardRequest.personId)
+        return service.add(cardRequest.toModel())
     }
 
 }
