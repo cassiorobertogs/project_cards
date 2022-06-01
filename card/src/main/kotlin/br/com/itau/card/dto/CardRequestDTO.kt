@@ -8,7 +8,7 @@ class CardRequestDTO(
     val nicknameCard: String,
     val personId: String,
 ) {
-fun toModel(): Card{
-    return Card(brand = brand, nicknameCard = nicknameCard, holder = Person(id = personId))
-}
+    fun toModel(): Card {
+        return Card(brand = brand, nicknameCard = nicknameCard, holder = Person(id = personId))
+    }
 }

@@ -10,10 +10,10 @@ import java.util.*
 class Card(
     @Id
     val id: String = UUID.randomUUID().toString(),
-    val number: Long? = null,
+    var number: Long? = null,
     val brand: Int,
     var validDate: LocalDate = LocalDate.now(),
-    val cvv: Int? = null,
+    var cvv: Int? = null,
     val nicknameCard: String,
     var holder: Person,
 ) {

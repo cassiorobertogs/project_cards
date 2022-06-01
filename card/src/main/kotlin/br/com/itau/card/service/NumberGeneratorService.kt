@@ -1,17 +1,19 @@
 package br.com.itau.card.service
 
+import org.springframework.stereotype.Service
 import java.util.*
 
-class CardGenerator {
-    fun main() {
-
+@Service
+class NumberGeneratorService() {
+    fun generate(brand: Int): Long {
         val rand = Random()
-        var brand: Int = 1
         var numVerify: Int? = null
         var convertingNum: StringBuilder = StringBuilder()
-        var ind: Int = if (brand == 1) 13 else 16
+        var ind: Int = when (brand) {
+            1 -> 13
+            else -> 16
+        }
         var cardNumber = IntArray(ind)
-
 
         while (numVerify != 0) {
             var soma1: Int = 0
@@ -24,7 +26,7 @@ class CardGenerator {
                 numbers[i] = rand.nextInt(10)
                 numbers[0] = primaryDigits
                 if (brand == 2) {
-                    numbers[1] = rand.nextInt(5) + 1
+                    numbers[1] = rand.nextInt(6) + 1
                 }
                 cardNumber[i] = numbers[i]
                 println("--Index: ${i}: ${numbers.get(i)}--")
@@ -74,33 +76,26 @@ class CardGenerator {
             println("Resultado s2: ${soma2}")
             println("Resultado s1 + s2: (${somaFinal})")
 
-            var convertNunToStr = Integer.toString(somaFinal)
-            var numToArr = convertNunToStr.toCharArray()
-            println("Convertendo o numero: ${convertNunToStr}")
-            println("Ar 1: ${numToArr[0]}")
-            println("Ar 2: ${numToArr[1]}")
-            numVerify = Integer.parseInt(numToArr[1].toString())
+            numVerify = somaFinal % 10
+
             println("O dígito verificador: ${numVerify}")
+
             println()
+
             for (i in numbers.indices) {
                 println("Tratado: ${i} = ${numbers.get(i)}--")
                 println("Original: ${i} = ${cardNumber.get(i)}**")
-
+                println()
 
             }
 
         }//fim do primeiro loop
-        /*for (i in cardNumber.indices) {
-            println("Resultado: ${i}: ${cardNumber.get(i)}--")
-            convertingNum.append(i)
-        }*/
-        //println("teste $convertingNum")
-        println()
 
         for (i in cardNumber.indices) {
             convertingNum.append(cardNumber[i])
             println("finalizado: ${i} = ${cardNumber.get(i)}**")
         }
         println("teste $convertingNum")
+        return convertingNum.toString().toLong()
     }
 }
